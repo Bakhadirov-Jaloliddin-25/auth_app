@@ -1,9 +1,10 @@
 import { api } from "./index";
 import { LoginRequest, LoginResponse } from "../../types";
 import { AppDispatch } from "..";
+import type { BaseQueryResult } from "@reduxjs/toolkit/query";
 
 const invalidateCustomerTag = async (
-  queryFulfilled: Promise<FetchBaseQueryResult<any>>,
+  queryFulfilled: Promise<BaseQueryResult<any>>,
   dispatch: AppDispatch
 ) => {
   try {

@@ -9,7 +9,7 @@ const productApi = api.injectEndpoints({
     }),
     getSingleProduct: build.query<IProduct, number>({
       query: (id) => `/products/${id}`,
-      providesTags: (result, error, id) => [{ type: "Products", id }],
+      providesTags: (_, __, id) => [{ type: "Products", id }],
     }),
     createProduct: build.mutation<void, Partial<IProduct>>({
       query: (product) => ({

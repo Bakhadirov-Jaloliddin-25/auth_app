@@ -9,9 +9,9 @@ import { useState, useEffect } from "react";
 const ProductDetail = () => {
   const [searchParams] = useSearchParams();
   const productId = searchParams.get("update");
-
-  const { data: product, isLoading } = useGetSingleProductQuery(productId, {
-    skip: !productId,
+  const id = Number(productId);
+  const { data: product, isLoading } = useGetSingleProductQuery(id, {
+    skip: isNaN(id),
   });
 
   const [title, setTitle] = useState("");
