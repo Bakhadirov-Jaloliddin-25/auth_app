@@ -5,7 +5,6 @@ import Users from "../pages/Users";
 import Products from "../pages/Products";
 import Login from "../pages/Login";
 import Auth from "../pages/Auth";
-import ProductDetail from "../pages/ProductsDetail";
 
 const Routers = () => {
   return (
@@ -30,10 +29,6 @@ const Routers = () => {
                 {
                   path: "/products",
                   element: <Products />,
-                },
-                {
-                  path: "products/product/:id",
-                  element: <ProductDetail />,
                 },
               ],
             },
