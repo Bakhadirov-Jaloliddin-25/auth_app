@@ -2,7 +2,7 @@ import { useRoutes } from "react-router-dom";
 import Home from "../pages/Home";
 import Layout from "../layout/Layout";
 import Users from "../pages/Users";
-import Products from "../pages/Products";
+import Products from "../pages/Products/products.component";
 import Login from "../pages/Login";
 import Auth from "../pages/Auth";
 

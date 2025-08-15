@@ -1,9 +1,3 @@
-import {
-  useDeleteProductMutation,
-  useGetProductsQuery,
-} from "../redux/api/products";
-import { IProduct } from "../types";
-import React from "react";
 import { Button, Table } from "antd";
 import type { TableColumnsType } from "antd";
 import Title from "antd/es/typography/Title";
@@ -13,12 +7,11 @@ import {
   AppstoreAddOutlined,
 } from "@ant-design/icons";
 import { Popconfirm, message } from "antd";
+import { DataType } from "./types";
+import useProductsHook from "./products.hook";
 
-interface DataType {
-  key: React.Key;
-}
 const Products = () => {
-  const [deleteProduct] = useDeleteProductMutation();
+  const { data, isLoading, deleteProduct } = useProductsHook();
 
   const columns: TableColumnsType<DataType> = [
     {
@@ -64,7 +57,7 @@ const Products = () => {
     {
       title: "Actions",
       dataIndex: "actions",
-      render: (_: any, record: any) => (
+      render: (_, record) => (
         <div className="flex gap-2">
           <button className="bg-blue-500 text-white px-2 py-1 rounded">
             <EditOutlined />
@@ -75,7 +68,7 @@ const Products = () => {
             cancelText="No"
             onConfirm={async () => {
               try {
-                await deleteProduct(record.id);
+                await deleteProduct(String(record.id));
                 message.success("Deleted!");
               } catch (error) {
                 message.error("Error");
@@ -94,15 +87,6 @@ const Products = () => {
       ),
     },
   ];
-
-  const { data: products, isLoading } = useGetProductsQuery();
-  const data: DataType[] =
-    products?.map((product: IProduct) => ({
-      ...product,
-      rate: product.rating.rate,
-      rateCount: product.rating.count,
-      key: product.id,
-    })) || [];
 
   return (
     <>
